@@ -24,6 +24,9 @@ class NewsCard extends StatelessWidget {
                 imageUrl: article.imageUrl,
                 title: article.title,
                 description: article.description,
+                author: article.author,
+                id: article.source.id,
+                url: article.newsURL,
               ),
             ),
           );
