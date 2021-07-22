@@ -127,6 +127,7 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                     onTap: () async {
                       if (await canLaunch('${widget.url}')) {
                         await launch('${widget.url}');
+                        print('cliked');
                       }
                     },
                   ),

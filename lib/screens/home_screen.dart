@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:top_news/components/news_card.dart';
@@ -29,23 +31,34 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         title: Text('Top News'),
       ),
-      body: FutureBuilder<NewsModel>(
-        future: newsModel,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.articles.length,
-              itemBuilder: (context, index) {
-                var article = snapshot.data!.articles[index];
-                return NewsCard(article: article);
-              },
-            );
-          } else
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-        },
+      body: RefreshIndicator(
+        onRefresh: _onRefresh,
+        child: FutureBuilder<NewsModel>(
+          future: newsModel,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data!.articles.length,
+                itemBuilder: (context, index) {
+                  var article = snapshot.data!.articles[index];
+                  return NewsCard(article: article);
+                },
+              );
+            } else
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+          },
+        ),
       ),
     );
   }
+}
+
+Future<Null> _onRefresh() {
+  Completer<Null> completer = new Completer<Null>();
+  Timer timer = new Timer(new Duration(seconds: 5), () {
+    completer.complete();
+  });
+  return completer.future;
 }
