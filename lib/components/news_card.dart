@@ -13,7 +13,7 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       child: GestureDetector(
         onTap: () async {
           await Navigator.push(
@@ -37,18 +37,14 @@ class NewsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 150,
+                height: 130,
                 width: 110,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: NetworkImage(article.imageUrl),
                     fit: BoxFit.cover,
                   ),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(35),
-                    bottomLeft: Radius.circular(35),
-                    // bottomLeft: Radius.circular(30),
-                  ),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
               SizedBox(
@@ -57,7 +53,7 @@ class NewsCard extends StatelessWidget {
               Flexible(
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 150,
+                  height: 130,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,7 +63,7 @@ class NewsCard extends StatelessWidget {
                         maxLines: 3,
                         style: TextStyle(
                           color: Colors.red[400],
-                          fontSize: 25,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                         overflow: TextOverflow.ellipsis,

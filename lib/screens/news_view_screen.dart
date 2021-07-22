@@ -70,7 +70,7 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Text(
                   widget.title,
@@ -82,7 +82,7 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Text(
                   widget.description,
@@ -94,7 +94,7 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,16 +110,15 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 40,
                 ),
                 Center(
                   child: SizedBox(
                     height: 50,
-                    width: 150,
+                    width: 160,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Colors.red[400],
-                        elevation: 3,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
