@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:top_news/screens/home_screen.dart';
+import 'package:top_news/screens/loading_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,8 +13,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: Colors.red),
       debugShowCheckedModeBanner: false,
       title: 'Top News',
-      initialRoute: HomeScreen.id,
+      initialRoute: LoadingScreen.id,
       routes: {
+        LoadingScreen.id: (context) => LoadingScreen(),
         HomeScreen.id: (context) => HomeScreen(),
       },
     );

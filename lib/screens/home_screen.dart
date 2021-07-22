@@ -24,31 +24,35 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.redAccent[50],
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        centerTitle: true,
-        title: Text('Top News'),
-      ),
-      body: RefreshIndicator(
-        onRefresh: _onRefresh,
-        child: FutureBuilder<NewsModel>(
-          future: newsModel,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.articles.length,
-                itemBuilder: (context, index) {
-                  var article = snapshot.data!.articles[index];
-                  return NewsCard(article: article);
-                },
-              );
-            } else
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-          },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: new Scaffold(
+        backgroundColor: Colors.redAccent[50],
+        appBar: AppBar(
+          backgroundColor: Colors.red,
+          centerTitle: true,
+          title: Text('Top 20 News'),
+          automaticallyImplyLeading: false,
+        ),
+        body: RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: FutureBuilder<NewsModel>(
+            future: newsModel,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemCount: snapshot.data!.articles.length,
+                  itemBuilder: (context, index) {
+                    var article = snapshot.data!.articles[index];
+                    return NewsCard(article: article);
+                  },
+                );
+              } else
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+            },
+          ),
         ),
       ),
     );
@@ -57,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Future<Null> _onRefresh() {
   Completer<Null> completer = new Completer<Null>();
-  Timer timer = new Timer(new Duration(seconds: 5), () {
+  Timer timer = new Timer(new Duration(seconds: 3), () {
     completer.complete();
   });
   return completer.future;

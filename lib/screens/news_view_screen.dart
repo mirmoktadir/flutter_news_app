@@ -23,6 +23,15 @@ class NewsViewScreen extends StatefulWidget {
 }
 
 class _NewsViewScreenState extends State<NewsViewScreen> {
+  Future<void> customLaunch(String url) async {
+    if (!url.contains('http')) url = 'https://$url';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('could not lunch $url');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +47,16 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Center(
+                  child: Text(
+                    'Date: ${widget.date}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -88,30 +107,22 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                         color: Colors.grey[800],
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Id: ${widget.id}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800],
-                      ),
-                    ),
                   ],
                 ),
                 SizedBox(
                   height: 25,
                 ),
                 Center(
-                  child: InkWell(
-                    child: Container(
-                      height: 40,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        color: Colors.red[400],
-                        borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    height: 50,
+                    width: 150,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red[400],
+                        elevation: 3,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                       child: Center(
                         child: Text(
@@ -123,15 +134,12 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                           ),
                         ),
                       ),
+                      onPressed: () {
+                        customLaunch(widget.url);
+                      },
                     ),
-                    onTap: () async {
-                      if (await canLaunch('${widget.url}')) {
-                        await launch('${widget.url}');
-                        print('cliked');
-                      }
-                    },
                   ),
-                ),
+                )
               ],
             ),
           ],
