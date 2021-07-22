@@ -110,7 +110,7 @@ class _NewsViewScreenState extends State<NewsViewScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Center(
                   child: SizedBox(
