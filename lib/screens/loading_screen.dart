@@ -19,8 +19,7 @@ class _LoadingScreenState extends State<LoadingScreen>
     super.initState();
 
     Timer(
-      Duration(seconds: 30),
-      //() => Navigator.pushNamed(context, HomeScreen.id),
+      Duration(seconds: 3),
       () => Navigator.pushReplacementNamed(context, HomeScreen.id),
     );
   }
@@ -33,17 +32,11 @@ class _LoadingScreenState extends State<LoadingScreen>
           width: 300,
           height: 100,
           child: Container(
-            // decoration: BoxDecoration(
-            //   image: DecorationImage(
-            //     image: AssetImage('images/app_main_logo.png'),
-            //     fit: BoxFit.cover,
-            //   ),
-            // ),
             child: Center(
               child: Column(
                 children: [
                   Text(
-                    'WSN',
+                    'WSJ',
                     style: TextStyle(
                       color: Colors.red[400],
                       fontSize: 50,

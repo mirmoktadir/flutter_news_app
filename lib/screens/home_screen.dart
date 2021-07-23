@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: Colors.red,
           centerTitle: true,
-          title: Text('Wall Street News'),
+          title: Text('Wall Street Journal'),
           automaticallyImplyLeading: false,
         ),
         body: RefreshIndicator(
